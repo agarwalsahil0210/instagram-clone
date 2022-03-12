@@ -100,7 +100,7 @@ class _SignupScreenState extends State<SignupScreen> {
               ),
               InkWell(
                 child: Container(
-                  child: const Text("Log in"),
+                  child: const Text("Sign Up"),
                   width: double.infinity,
                   alignment: Alignment.center,
                   padding: const EdgeInsets.symmetric(vertical: 16),
