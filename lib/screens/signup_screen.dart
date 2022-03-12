@@ -44,11 +44,22 @@ class _SignupScreenState extends State<SignupScreen> {
               const SizedBox(
                 height: 64,
               ),
-              Stack(children: const [
-                CircleAvatar(
+              Stack(children: [
+                const CircleAvatar(
                   radius: 48,
                   backgroundImage: NetworkImage(
                       'https://i0.wp.com/www.cssscript.com/wp-content/uploads/2020/12/Customizable-SVG-Avatar-Generator-In-JavaScript-Avataaars.js.png?fit=438%2C408&ssl=1'),
+                ),
+                Positioned(
+                  bottom: -10,
+                  left: 60,
+                  child: IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.add_a_photo,
+                      color: Colors.grey,
+                    ),
+                  ),
                 ),
               ]),
               const SizedBox(
