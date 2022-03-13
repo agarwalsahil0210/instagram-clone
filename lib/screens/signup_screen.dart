@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:instagram_clone/resources/auth_methods.dart';
 import 'package:instagram_clone/utils/colors.dart';
 import 'package:instagram_clone/widgets/text_field_input.dart';
 
@@ -36,10 +37,12 @@ class _SignupScreenState extends State<SignupScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Flexible(flex: 2, child: Container()),
-              SvgPicture.asset(
-                'assets/ic_instagram.svg',
-                color: primaryColor,
-                height: 64,
+              Expanded(
+                child: SvgPicture.asset(
+                  'assets/ic_instagram.svg',
+                  color: primaryColor,
+                  height: 64,
+                ),
               ),
               const SizedBox(
                 height: 64,
@@ -65,40 +68,57 @@ class _SignupScreenState extends State<SignupScreen> {
               const SizedBox(
                 height: 16,
               ),
-              TextFieldInput(
-                hintText: 'Enter your username',
-                textInputType: TextInputType.text,
-                textEditingController: _usernameController,
+              Expanded(
+                child: TextFieldInput(
+                  hintText: 'Enter your username',
+                  textInputType: TextInputType.text,
+                  textEditingController: _usernameController,
+                ),
               ),
               const SizedBox(
                 height: 16,
               ),
-              TextFieldInput(
-                hintText: 'Enter your email',
-                textInputType: TextInputType.emailAddress,
-                textEditingController: _emailController,
+              Expanded(
+                child: TextFieldInput(
+                  hintText: 'Enter your email',
+                  textInputType: TextInputType.emailAddress,
+                  textEditingController: _emailController,
+                ),
               ),
               const SizedBox(
                 height: 16,
               ),
-              TextFieldInput(
-                hintText: 'Enter your password',
-                textInputType: TextInputType.emailAddress,
-                textEditingController: _passwordController,
-                isPass: true,
+              Expanded(
+                child: TextFieldInput(
+                  hintText: 'Enter your password',
+                  textInputType: TextInputType.emailAddress,
+                  textEditingController: _passwordController,
+                  isPass: true,
+                ),
               ),
               const SizedBox(
                 height: 16,
               ),
-              TextFieldInput(
-                hintText: 'Enter your bio',
-                textInputType: TextInputType.text,
-                textEditingController: _bioController,
+              Expanded(
+                child: TextFieldInput(
+                  hintText: 'Enter your bio',
+                  textInputType: TextInputType.text,
+                  textEditingController: _bioController,
+                ),
               ),
               const SizedBox(
                 height: 16,
               ),
               InkWell(
+                onTap: () async {
+                  String res = await AuthMethods().signUpUser(
+                    email: _emailController.text,
+                    password: _passwordController.text,
+                    username: _usernameController.text,
+                    bio: _bioController.text,
+                  );
+                  print(res);
+                },
                 child: Container(
                   child: const Text("Sign Up"),
                   width: double.infinity,
@@ -117,20 +137,23 @@ class _SignupScreenState extends State<SignupScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text("Don't have an account?"),
+                  const Text("Already have an account?"),
                   const SizedBox(
                     width: 8,
                   ),
                   GestureDetector(
                     onTap: () {},
                     child: const Text(
-                      "Sign up",
+                      "Log In",
                       style: TextStyle(
                         color: blueColor,
                       ),
                     ),
                   ),
                 ],
+              ),
+              const SizedBox(
+                height: 16,
               ),
             ],
           ),
